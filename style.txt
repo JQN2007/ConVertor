@@ -1,0 +1,80 @@
+// =============================================
+// MAYÚSCULAS / MINÚSCULAS
+// =============================================
+
+function applyCase(text, mode) {
+  switch (mode) {
+    case "upper":    return text.toUpperCase();
+    case "lower":    return text.toLowerCase();
+    case "title":    return text.replace(/\b\w/g, c => c.toUpperCase());
+    case "sentence": return text.charAt(0).toUpperCase() + text.slice(1).toLowerCase();
+    default:         return text;
+  }
+}
+
+// =============================================
+// SELECTOR DE CASO (botones)
+// =============================================
+
+let selectedCase = "none";
+
+document.querySelectorAll(".case-btn").forEach(btn => {
+  btn.addEventListener("click", () => {
+    document.querySelectorAll(".case-btn").forEach(b => b.classList.remove("active"));
+    btn.classList.add("active");
+    selectedCase = btn.dataset.case;
+  });
+});
+
+// =============================================
+// SLIDER DE TAMAÑO — actualiza el número en tiempo real
+// =============================================
+
+const sizeRange = document.getElementById("sizeRange");
+const sizeValue = document.getElementById("sizeValue");
+
+sizeRange.addEventListener("input", () => {
+  sizeValue.textContent = sizeRange.value;
+});
+
+// =============================================
+// BOTÓN APLICAR
+// =============================================
+
+document.getElementById("applyBtn").addEventListener("click", () => {
+  const input     = document.getElementById("inputText").value.trim();
+  const font      = document.getElementById("fontSelect").value;
+  const size      = sizeRange.value + "px";
+  const resultBox = document.getElementById("resultBox");
+  const errorMsg  = document.getElementById("errorMsg");
+
+  if (!input) {
+    errorMsg.textContent = "Escribí algo primero.";
+    errorMsg.style.display = "block";
+    return;
+  }
+
+  errorMsg.style.display = "none";
+
+  const result = applyCase(input, selectedCase);
+
+  resultBox.style.fontFamily = font;
+  resultBox.style.fontSize   = size;
+  resultBox.textContent      = result;
+});
+
+// =============================================
+// BOTÓN COPIAR
+// =============================================
+
+document.getElementById("copyBtn").addEventListener("click", () => {
+  const text = document.getElementById("resultBox").textContent;
+  if (!text) return;
+
+  navigator.clipboard.writeText(text).then(() => {
+    const btn = document.getElementById("copyBtn");
+    const original = btn.textContent;
+    btn.textContent = "¡Copiado!";
+    setTimeout(() => btn.textContent = original, 1500);
+  });
+});
