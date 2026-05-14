@@ -2,81 +2,94 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Formateador de Texto</title>
+  <title>ConVertor</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  
-  <h1><b>CONVERTIDOR DE TEXTO</b></h1>
-  <h5>y mejor traductor que gugul</h5>
 
-  <textarea id="inputText" placeholder="  Escribí tu texto acá..."></textarea>
+  <!-- TÍTULO Y SUBTÍTULO (fuera de la caja) -->
+  <h1>ConVertor</h1>
+  <h2>Mejor que gugul</h2>
 
+  <!-- CAJA PRINCIPAL -->
+  <div class="caja">
 
-  <label for="fontSelect">Fuente</label>
-  <select id="fontSelect">
-    <option value="sans-serif">Sans-serif</option>
-    <option value="serif">Serif</option>
-    <option value="monospace">Monoespaciada</option>
-    <option value="Georgia, serif">Georgia</option>
-    <option value="'Courier New', monospace">Courier New</option>
-    <option value="'Arial', sans-serif">Arial</option>
-    <option value="'Verdana', sans-serif">Verdana</option>
-    <option value="'Times New Roman', serif">Times New Roman</option>
-  </select>
+    <!-- ENTRADA DE TEXTO -->
+    <label for="inputText">Tu texto</label>
+    <textarea id="inputText" placeholder="Escribí tu texto acá..."></textarea>
 
-  <label for="sizeRange">Tamaño: <span id="sizeValue">16</span>px</label>
-  <input type="range" id="sizeRange" min="10" max="48" value="16" step="1">
+    <!-- FUENTE -->
+    <label for="fontSelect">Fuente</label>
+    <select id="fontSelect">
+      <option value="sans-serif">Sans-serif</option>
+      <option value="serif">Serif</option>
+      <option value="monospace">Monoespaciada</option>
+      <option value="Georgia, serif">Georgia</option>
+      <option value="'Courier New', monospace">Courier New</option>
+      <option value="'Arial', sans-serif">Arial</option>
+      <option value="'Verdana', sans-serif">Verdana</option>
+      <option value="'Times New Roman', serif">Times New Roman</option>
+    </select>
 
-  <label>Mayúsculas / Minúsculas</label>
-  <div id="caseGroup">
-    <button class="case-btn active" data-case="none">Sin cambios</button>
-    <button class="case-btn" data-case="upper">MAYÚSCULAS</button>
-    <button class="case-btn" data-case="lower">minúsculas</button>
-    <button class="case-btn" data-case="title">Cada Palabra</button>
-    <button class="case-btn" data-case="sentence">Primera letra</button>
-  </div>
+    <!-- TAMAÑO -->
+    <label for="sizeRange">Tamaño: <span id="sizeValue">16</span>px</label>
+    <input type="range" id="sizeRange" min="10" max="48" value="16" step="1">
 
-  <label for="sourceLang">Idioma del texto que escribís</label>
-  <select id="sourceLang">
-    <option value="es">Español</option>
-    <option value="en">Inglés</option>
-    <option value="fr">Francés</option>
-    <option value="pt">Portugués</option>
-    <option value="de">Alemán</option>
-    <option value="it">Italiano</option>
-    <option value="zh">Chino</option>
-    <option value="ja">Japonés</option>
-    <option value="ru">Ruso</option>
-    <option value="ar">Árabe</option>
-  </select>
+    <!-- MAYÚSCULAS / MINÚSCULAS -->
+    <label>Mayúsculas / Minúsculas</label>
+    <div id="caseGroup">
+      <button class="case-btn active" data-case="none">Sin cambios</button>
+      <button class="case-btn" data-case="upper">MAYÚSCULAS</button>
+      <button class="case-btn" data-case="lower">minúsculas</button>
+      <button class="case-btn" data-case="title">Cada Palabra</button>
+      <button class="case-btn" data-case="sentence">Primera letra</button>
+    </div>
 
-  <label for="langSelect">Traducir a</label>
-  <select id="langSelect">
-    <option value="none">Sin traducción</option>
-    <option value="en">Inglés</option>
-    <option value="es">Español</option>
-    <option value="fr">Francés</option>
-    <option value="pt">Portugués</option>
-    <option value="de">Alemán</option>
-    <option value="it">Italiano</option>
-    <option value="zh">Chino</option>
-    <option value="ja">Japonés</option>
-    <option value="ru">Ruso</option>
-    <option value="ar">Árabe</option>
-  </select>
+    <!-- IDIOMA ORIGEN -->
+    <label for="sourceLang">Idioma del texto que escribís</label>
+    <select id="sourceLang">
+      <option value="es">Español</option>
+      <option value="en">Inglés</option>
+      <option value="fr">Francés</option>
+      <option value="pt">Portugués</option>
+      <option value="de">Alemán</option>
+      <option value="it">Italiano</option>
+      <option value="zh">Chino</option>
+      <option value="ja">Japonés</option>
+      <option value="ru">Ruso</option>
+      <option value="ar">Árabe</option>
+    </select>
 
-  <button id="applyBtn">Aplicar</button>
+    <!-- IDIOMA DESTINO -->
+    <label for="langSelect">Traducir a</label>
+    <select id="langSelect">
+      <option value="none">Sin traducción</option>
+      <option value="en">Inglés</option>
+      <option value="es">Español</option>
+      <option value="fr">Francés</option>
+      <option value="pt">Portugués</option>
+      <option value="de">Alemán</option>
+      <option value="it">Italiano</option>
+      <option value="zh">Chino</option>
+      <option value="ja">Japonés</option>
+      <option value="ru">Ruso</option>
+      <option value="ar">Árabe</option>
+    </select>
 
+    <!-- BOTÓN PRINCIPAL -->
+    <button id="applyBtn">Aplicar</button>
 
-  <p id="loadingMsg" style="display:none;">Traduciendo...</p>
-  <p id="errorMsg"   style="display:none; color:red;"></p>
+    <!-- ESTADOS -->
+    <p id="loadingMsg" style="display:none;">Traduciendo...</p>
+    <p id="errorMsg"   style="display:none;"></p>
 
+    <!-- RESULTADO -->
+    <div id="resultBox"></div>
 
-  <div id="resultBox"></div>
+    <!-- COPIAR -->
+    <button id="copyBtn">Copiar resultado</button>
 
- 
-  <button id="copyBtn">Copiar resultado</button>
+  </div><!-- fin .caja -->
 
   <script src="app.js"></script>
 </body>
